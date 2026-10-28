@@ -36,7 +36,47 @@
     {
       "id": "agronomia",
       "name": "Agronomía",
-      "coordinates": [-33.5037, -70.6100]
+      "coordinates": [-33.5037, -70.61]
+    },
+    {
+      "id": "humanidades",
+      "name": "Humanidades",
+      "coordinates": [-33.4983, -70.614]
+    },
+    {
+      "id": "college",
+      "name": "College",
+      "coordinates": [-33.4995, -70.615]
+    },
+    {
+      "id": "deportes",
+      "name": "Deportes",
+      "coordinates": [-33.503, -70.6135]
+    },
+    {
+      "id": "educacion",
+      "name": "Educación",
+      "coordinates": [-33.4978, -70.6118]
+    },
+    {
+      "id": "construccion-civil",
+      "name": "Construcción Civil",
+      "coordinates": [-33.5, -70.6112]
+    },
+    {
+      "id": "enfermeria",
+      "name": "Enfermería",
+      "coordinates": [-33.4968, -70.6128]
+    },
+    {
+      "id": "fisica",
+      "name": "Física",
+      "coordinates": [-33.5008, -70.6125]
+    },
+    {
+      "id": "kinesiologia",
+      "name": "Kinesiología",
+      "coordinates": [-33.502, -70.611]
     }
   ]
 }
