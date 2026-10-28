@@ -59,6 +59,7 @@ export function ParkingFinder() {
             </SectionHeading>
             {showAlternativesNotice && (
               <AlternativesNotice
+                key={`${scenario.id}:${destination.id}`}
                 fullLotName={closestLot.lot.name}
                 destinationName={destination.name}
                 alternativesCount={lotViews.filter(({ status }) => isSelectable(status)).length}
