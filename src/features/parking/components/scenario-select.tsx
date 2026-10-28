@@ -32,10 +32,14 @@ export function ScenarioSelect({ scenarios, value, onChange }: ScenarioSelectPro
         {/* Icon-only on small screens; the scenario is a facilitator tool. */}
         <SelectValue className="max-sm:hidden!" />
       </SelectTrigger>
-      <SelectContent align="end" alignItemWithTrigger={false}>
+      {/* Wider than the trigger, which is icon-only on small screens. */}
+      <SelectContent
+        alignItemWithTrigger={false}
+        className="w-72 max-w-[calc(100vw-2rem)]"
+      >
         {scenarios.map((scenario) => (
-          <SelectItem key={scenario.id} value={scenario.id}>
-            <span className="flex flex-col">
+          <SelectItem key={scenario.id} value={scenario.id} className="py-1.5">
+            <span className="flex flex-col gap-0.5 whitespace-normal">
               <span>{scenario.name}</span>
               <span className="text-xs text-muted-foreground">{scenario.description}</span>
             </span>
