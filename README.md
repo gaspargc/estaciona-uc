@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Estaciona UC
 
-## Getting Started
+**Demo:** https://estaciona-uc.vercel.app/
 
-First, run the development server:
+Prototipo funcional para estudiantes que llegan en auto al campus San Joaquín de la Pontificia Universidad Católica de Chile. Permite consultar la disponibilidad de los estacionamientos, elegir dónde se tienen clases, comparar alternativas por disponibilidad y caminata estimada, y confirmar una elección.
+
+La disponibilidad es simulada. El escenario se cambia desde el selector del encabezado o con el parámetro `?escenario=` (`poco-concurrido`, `concurrido`, `hora-punta`).
+
+## Desarrollo
+
+Requiere Node.js y Yarn 4.
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estructura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/domain/`: tipos y lógica pura (disponibilidad, caminata, orden).
+- `src/data/`: sectores, destinos con coordenadas aproximadas y escenarios simulados.
+- `src/features/parking/`: hooks y componentes de la vista.
+- `src/components/ui/`: componentes de shadcn/ui.
