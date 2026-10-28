@@ -1,0 +1,42 @@
+{
+  "parkingLots": [
+    {
+      "id": "comercial",
+      "name": "Comercial",
+      "coordinates": [-33.4972, -70.6156],
+      "capacity": 180,
+      "accessHint": "Entrada por Av. Vicuña Mackenna, frente a la Escuela de Administración."
+    },
+    {
+      "id": "ingenieria",
+      "name": "Ingeniería",
+      "coordinates": [-33.4988, -70.6128],
+      "capacity": 150,
+      "accessHint": "Acceso por el anillo interior, junto a los edificios de Ingeniería."
+    },
+    {
+      "id": "agronomia",
+      "name": "Agronomía",
+      "coordinates": [-33.5042, -70.6094],
+      "capacity": 120,
+      "accessHint": "Acceso por el sector sur del campus, al costado de la Facultad de Agronomía."
+    }
+  ],
+  "destinations": [
+    {
+      "id": "comercial",
+      "name": "Comercial",
+      "coordinates": [-33.4977, -70.6148]
+    },
+    {
+      "id": "ingenieria",
+      "name": "Ingeniería",
+      "coordinates": [-33.4993, -70.6122]
+    },
+    {
+      "id": "agronomia",
+      "name": "Agronomía",
+      "coordinates": [-33.5037, -70.6100]
+    }
+  ]
+}
