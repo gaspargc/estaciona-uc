@@ -16,7 +16,7 @@ export function ChoiceBar({ selectedLot, confirmedLot, onConfirm, onReset }: Cho
   return (
     <div
       aria-live="polite"
-      className="sticky bottom-0 z-10 -mx-4 mt-auto border-t bg-card/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_-6px_rgb(0_0_0/0.15)] backdrop-blur"
+      className="sticky bottom-0 z-10 -mx-(--gutter) mt-auto border-t bg-card/95 px-(--gutter) pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_-6px_rgb(0_0_0/0.15)] backdrop-blur"
     >
       <ChoiceBarContent
         selectedLot={selectedLot}

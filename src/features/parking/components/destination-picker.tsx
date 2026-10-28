@@ -30,7 +30,7 @@ export function DestinationPicker({
         value={value ? [value] : []}
         onValueChange={([next]) => onChange(next ?? null)}
         spacing={2}
-        className="-mx-4 w-auto max-w-none overflow-x-auto px-4 pb-1 [scrollbar-width:none]"
+        className="-mx-(--gutter) w-auto max-w-none overflow-x-auto px-(--gutter) pb-1 [scrollbar-width:none]"
       >
         {destinations.map((destination) => (
           <ToggleGroupItem
