@@ -4,6 +4,7 @@ import { GraduationCap } from "lucide-react";
 
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import type { Destination } from "@/domain/types";
+import { SectionHeading } from "./section-heading";
 
 interface DestinationPickerProps {
   destinations: readonly Destination[];
@@ -18,19 +19,16 @@ export function DestinationPicker({
 }: DestinationPickerProps) {
   return (
     <section aria-labelledby="destination-label" className="flex flex-col gap-2">
-      <h2
-        id="destination-label"
-        className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground"
-      >
-        <GraduationCap className="size-4" aria-hidden />
+      <SectionHeading id="destination-label" icon={GraduationCap}>
         ¿Dónde tienes clases?
-      </h2>
+      </SectionHeading>
 
+      {/* One scrollable row on phones; wraps on wider screens so no option is hidden. */}
       <ToggleGroup
         value={value ? [value] : []}
         onValueChange={([next]) => onChange(next ?? null)}
         spacing={2}
-        className="-mx-(--gutter) w-auto max-w-none overflow-x-auto px-(--gutter) pb-1 [scrollbar-width:none]"
+        className="-mx-(--gutter) w-auto max-w-none overflow-x-auto px-(--gutter) pb-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible"
       >
         {destinations.map((destination) => (
           <ToggleGroupItem

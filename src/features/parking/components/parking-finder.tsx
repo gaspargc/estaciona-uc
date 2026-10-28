@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SquareParking } from "lucide-react";
 
 import { DESTINATIONS, PARKING_LOTS } from "@/data/campus";
 import { DEFAULT_SCENARIO_ID, SCENARIOS } from "@/data/scenarios";
@@ -14,6 +15,7 @@ import { DestinationPicker } from "./destination-picker";
 import { LotList } from "./lot-list";
 import { MapViewPlaceholder } from "./map-view-placeholder";
 import { ScenarioSelect } from "./scenario-select";
+import { SectionHeading } from "./section-heading";
 import { SortControl } from "./sort-control";
 import { ViewSwitch, type ViewMode } from "./view-switch";
 
@@ -51,7 +53,10 @@ export function ParkingFinder() {
         {viewMode === "map" ? (
           <MapViewPlaceholder />
         ) : (
-          <section aria-label="Comparar estacionamientos" className="flex flex-col gap-3">
+          <section aria-labelledby="lots-label" className="flex flex-col gap-3 border-t pt-5">
+            <SectionHeading id="lots-label" icon={SquareParking}>
+              Estacionamientos
+            </SectionHeading>
             {showAlternativesNotice && (
               <AlternativesNotice
                 fullLotName={closestLot.lot.name}
