@@ -4,14 +4,14 @@ export const SCENARIOS: readonly Scenario[] = [
   {
     id: "poco-concurrido",
     name: "Poco concurrido",
-    description: "Todos los sectores tienen espacios.",
-    freeSpacesByLot: { comercial: 64, ingenieria: 71, agronomia: 88 },
+    description: "Todos los sectores tienen espacios, sobre todo Comercial.",
+    freeSpacesByLot: { comercial: 95, ingenieria: 40, agronomia: 70 },
   },
   {
     id: "concurrido",
     name: "Concurrido",
-    description: "Comercial está casi lleno.",
-    freeSpacesByLot: { comercial: 12, ingenieria: 35, agronomia: 52 },
+    description: "Comercial está casi lleno e Ingeniería tiene la mayor cantidad de espacios.",
+    freeSpacesByLot: { comercial: 12, ingenieria: 58, agronomia: 31 },
   },
   {
     id: "hora-punta",
