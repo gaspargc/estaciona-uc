@@ -20,8 +20,8 @@ const byWalking: LotComparator = (a, b) =>
 const byFreeSpaces: LotComparator = (a, b) => b.freeSpaces - a.freeSpaces;
 
 const COMPARATORS: Record<SortCriterion, LotComparator[]> = {
-  availability: [byStatus, byWalking, byFreeSpaces],
-  walking: [byFullLast, byWalking, byStatus, byFreeSpaces],
+  availability: [byStatus, byFreeSpaces, byWalking],
+  walking: [byFullLast, byWalking, byFreeSpaces],
 };
 
 /** Sorts lots by the given criterion. Full lots always go last. */
