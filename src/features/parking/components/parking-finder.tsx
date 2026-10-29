@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { SquareParking } from "lucide-react";
 
 import { DESTINATIONS, PARKING_LOTS } from "@/data/campus";
@@ -13,15 +12,12 @@ import { AppHeader } from "./app-header";
 import { ChoiceBar } from "./choice-bar";
 import { DestinationPicker } from "./destination-picker";
 import { LotList } from "./lot-list";
-import { MapViewPlaceholder } from "./map-view-placeholder";
 import { ScenarioSelect } from "./scenario-select";
 import { SectionHeading } from "./section-heading";
 import { SortControl } from "./sort-control";
-import { ViewSwitch, type ViewMode } from "./view-switch";
 
 /** Wires campus data and finder state into the presentational components. */
 export function ParkingFinder() {
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [scenario, setScenario] = useScenarioParam(SCENARIOS, DEFAULT_SCENARIO_ID);
   const finder = useParkingFinder({
     lots: PARKING_LOTS,
@@ -36,10 +32,7 @@ export function ParkingFinder() {
     <>
       <AppHeader
         actions={
-          <>
-            <ScenarioSelect scenarios={SCENARIOS} value={scenario.id} onChange={setScenario} />
-            <ViewSwitch value={viewMode} onChange={setViewMode} />
-          </>
+          <ScenarioSelect scenarios={SCENARIOS} value={scenario.id} onChange={setScenario} />
         }
       />
 
@@ -50,35 +43,31 @@ export function ParkingFinder() {
           onChange={finder.selectDestination}
         />
 
-        {viewMode === "map" ? (
-          <MapViewPlaceholder />
-        ) : (
-          <section aria-labelledby="lots-label" className="flex flex-col gap-3 border-t pt-5">
-            <SectionHeading id="lots-label" icon={SquareParking}>
-              Estacionamientos
-            </SectionHeading>
-            {showAlternativesNotice && (
-              <AlternativesNotice
-                key={`${scenario.id}:${destination.id}`}
-                fullLotName={closestLot.lot.name}
-                destinationName={destination.name}
-                alternativesCount={lotViews.filter(({ status }) => isSelectable(status)).length}
-              />
-            )}
-            <SortControl
-              value={finder.sortCriterion}
-              onChange={finder.setSortCriterion}
-              canSortByWalking={finder.canSortByWalking}
+        <section aria-labelledby="lots-label" className="flex flex-col gap-3 border-t pt-5">
+          <SectionHeading id="lots-label" icon={SquareParking}>
+            Estacionamientos
+          </SectionHeading>
+          {showAlternativesNotice && (
+            <AlternativesNotice
+              key={`${scenario.id}:${destination.id}`}
+              fullLotName={closestLot.lot.name}
+              destinationName={destination.name}
+              alternativesCount={lotViews.filter(({ status }) => isSelectable(status)).length}
             />
-            <LotList
-              lots={lotViews}
-              selectedLotId={finder.selectedLot?.lot.id ?? null}
-              confirmedLotId={finder.confirmedLot?.lot.id ?? null}
-              closestLotId={closestLot?.lot.id ?? null}
-              onSelect={finder.selectLot}
-            />
-          </section>
-        )}
+          )}
+          <SortControl
+            value={finder.sortCriterion}
+            onChange={finder.setSortCriterion}
+            canSortByWalking={finder.canSortByWalking}
+          />
+          <LotList
+            lots={lotViews}
+            selectedLotId={finder.selectedLot?.lot.id ?? null}
+            confirmedLotId={finder.confirmedLot?.lot.id ?? null}
+            closestLotId={closestLot?.lot.id ?? null}
+            onSelect={finder.selectLot}
+          />
+        </section>
       </main>
 
       <ChoiceBar
