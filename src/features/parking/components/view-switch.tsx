@@ -27,7 +27,13 @@ export function ViewSwitch({ value, onChange }: ViewSwitchProps) {
         <List aria-hidden />
         <span className="hidden sm:inline">Lista</span>
       </ToggleGroupItem>
-      <ToggleGroupItem value="map" aria-label="Vista mapa" className="aria-pressed:bg-secondary">
+      <ToggleGroupItem
+        value="map"
+        aria-label="Vista mapa"
+        className="aria-pressed:bg-secondary"
+        disabled
+        title="La vista mapa estará disponible próximamente"
+      >
         <MapIcon aria-hidden />
         <span className="hidden sm:inline">Mapa</span>
       </ToggleGroupItem>
