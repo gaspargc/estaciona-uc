@@ -5,6 +5,7 @@
       "name": "Comercial",
       "coordinates": [-33.4972, -70.6156],
       "capacity": 180,
+      "accessLabel": "Acceso por Av. Vicuña Mackenna",
       "accessHint": "Entrada por Av. Vicuña Mackenna, frente a la Escuela de Administración."
     },
     {
@@ -12,6 +13,7 @@
       "name": "Ingeniería",
       "coordinates": [-33.4988, -70.6128],
       "capacity": 150,
+      "accessLabel": "Acceso por anillo interior",
       "accessHint": "Acceso por el anillo interior, junto a los edificios de Ingeniería."
     },
     {
@@ -19,6 +21,7 @@
       "name": "Agronomía",
       "coordinates": [-33.5042, -70.6094],
       "capacity": 120,
+      "accessLabel": "Acceso por sector sur",
       "accessHint": "Acceso por el sector sur del campus, al costado de la Facultad de Agronomía."
     }
   ],

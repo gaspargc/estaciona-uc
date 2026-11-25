@@ -1,4 +1,4 @@
-import { Check, MapPin } from "lucide-react";
+import { Check, LogIn, MapPin } from "lucide-react";
 
 import { isSelectable } from "@/domain/availability";
 import type { LotView } from "@/domain/types";
@@ -59,6 +59,11 @@ export function LotCard({
             {lot.capacity} libres
           </span>
           {walkingMinutes !== null && <WalkingTime minutes={walkingMinutes} />}
+        </span>
+
+        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <LogIn className="size-4 shrink-0" aria-hidden />
+          {lot.accessLabel}
         </span>
 
         {!selectable && (
