@@ -5,7 +5,6 @@ import { Clock, SquareParking } from "lucide-react";
 import { DESTINATIONS, PARKING_LOTS } from "@/data/campus";
 import { DEFAULT_SCENARIO_ID, SCENARIOS } from "@/data/scenarios";
 import { isSelectable } from "@/domain/availability";
-import { useFacilitatorMode } from "../hooks/use-facilitator-mode";
 import { useParkingFinder } from "../hooks/use-parking-finder";
 import { useScenarioParam } from "../hooks/use-scenario-param";
 import { AlternativesNotice } from "./alternatives-notice";
@@ -20,7 +19,6 @@ import { SortControl } from "./sort-control";
 /** Wires campus data and finder state into the presentational components. */
 export function ParkingFinder() {
   const [scenario, setScenario] = useScenarioParam(SCENARIOS, DEFAULT_SCENARIO_ID);
-  const isFacilitator = useFacilitatorMode();
   const finder = useParkingFinder({
     lots: PARKING_LOTS,
     destinations: DESTINATIONS,
@@ -34,9 +32,7 @@ export function ParkingFinder() {
     <>
       <AppHeader
         actions={
-          isFacilitator && (
-            <ScenarioSelect scenarios={SCENARIOS} value={scenario.id} onChange={setScenario} />
-          )
+          <ScenarioSelect scenarios={SCENARIOS} value={scenario.id} onChange={setScenario} />
         }
       />
 

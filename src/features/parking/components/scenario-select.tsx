@@ -5,7 +5,10 @@ import { FlaskConical } from "lucide-react";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -37,14 +40,25 @@ export function ScenarioSelect({ scenarios, value, onChange }: ScenarioSelectPro
         alignItemWithTrigger={false}
         className="w-72 max-w-[calc(100vw-2rem)]"
       >
-        {scenarios.map((scenario) => (
-          <SelectItem key={scenario.id} value={scenario.id} className="py-1.5">
-            <span className="flex flex-col gap-0.5 whitespace-normal">
-              <span>{scenario.name}</span>
-              <span className="text-xs text-muted-foreground">{scenario.description}</span>
+        <SelectGroup className="p-0">
+          {/* The selector is a Wizard of Oz tool for tests, not part of the app itself. */}
+          <SelectLabel className="flex flex-col gap-0.5 pb-1.5">
+            <span className="font-medium text-foreground">Escenario simulado</span>
+            <span>
+              Herramienta de prueba: no es parte de la app. Simula situaciones reales de
+              ocupación.
             </span>
-          </SelectItem>
-        ))}
+          </SelectLabel>
+          <SelectSeparator />
+          {scenarios.map((scenario) => (
+            <SelectItem key={scenario.id} value={scenario.id} className="py-1.5">
+              <span className="flex flex-col gap-0.5 whitespace-normal">
+                <span>{scenario.name}</span>
+                <span className="text-xs text-muted-foreground">{scenario.description}</span>
+              </span>
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );
