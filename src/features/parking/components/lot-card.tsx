@@ -36,6 +36,8 @@ export function LotCard({
         "focus-visible:ring-3 focus-visible:ring-ring/50",
         selectable && "hover:ring-foreground/25 active:scale-[0.99]",
         isSelected && "ring-2 ring-primary hover:ring-primary",
+        // While comparing, the current choice stays outlined so it need not be recalled.
+        isConfirmed && !isSelected && "ring-2 ring-primary/40 hover:ring-primary/60",
         !selectable && "cursor-not-allowed bg-muted/60 shadow-none",
       )}
     >
