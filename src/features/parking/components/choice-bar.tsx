@@ -1,4 +1,4 @@
-import { CircleCheck, CircleX, Hand, MapPin } from "lucide-react";
+import { CircleCheck, CircleX, Hand, MapPin, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import type { LotView } from "@/domain/types";
@@ -9,6 +9,7 @@ interface ChoiceBarProps {
   confirmedLot: LotView | null;
   onConfirm: () => void;
   onKeep: () => void;
+  onClear: () => void;
 }
 
 /** Bottom bar that confirms the chosen lot and gives feedback about it (D7). */
@@ -23,7 +24,13 @@ export function ChoiceBar(props: ChoiceBarProps) {
   );
 }
 
-function ChoiceBarContent({ selectedLot, confirmedLot, onConfirm, onKeep }: ChoiceBarProps) {
+function ChoiceBarContent({
+  selectedLot,
+  confirmedLot,
+  onConfirm,
+  onKeep,
+  onClear,
+}: ChoiceBarProps) {
   if (selectedLot && selectedLot.lot.id !== confirmedLot?.lot.id) {
     // Only offer to keep the current choice while it still has spaces.
     if (confirmedLot && confirmedLot.status !== "full") {
@@ -39,10 +46,10 @@ function ChoiceBarContent({ selectedLot, confirmedLot, onConfirm, onKeep }: Choi
     return <PendingChoice lot={selectedLot} onConfirm={onConfirm} />;
   }
   if (confirmedLot?.status === "full") {
-    return <StaleChoice lot={confirmedLot} />;
+    return <StaleChoice lot={confirmedLot} onClear={onClear} />;
   }
   if (confirmedLot) {
-    return <ConfirmedChoice lot={confirmedLot} />;
+    return <ConfirmedChoice lot={confirmedLot} onClear={onClear} />;
   }
   return (
     <p className="flex items-center gap-2 py-1.5 text-sm text-muted-foreground">
@@ -113,18 +120,30 @@ function ChangeChoice({
   );
 }
 
-function ConfirmedChoice({ lot }: { lot: LotView }) {
+function ClearButton({ onClear }: { onClear: () => void }) {
+  return (
+    <Button variant="outline" size="lg" className="shrink-0" onClick={onClear}>
+      <X data-icon="inline-start" aria-hidden />
+      Quitar
+    </Button>
+  );
+}
+
+function ConfirmedChoice({ lot, onClear }: { lot: LotView; onClear: () => void }) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex min-w-0 flex-col gap-0.5">
-        <span className="flex items-center gap-1.5 text-sm font-medium text-status-available">
-          <CircleCheck className="size-4" aria-hidden />
-          Elegiste {lot.lot.name}
-        </span>
-        <span className="text-sm text-muted-foreground">
-          {lot.freeSpaces} espacios libres
-          {lot.walkingMinutes !== null && <> · {lot.walkingMinutes} min caminando a tu clase</>}
-        </span>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 flex-col gap-0.5">
+          <span className="flex items-center gap-1.5 text-sm font-medium text-status-available">
+            <CircleCheck className="size-4" aria-hidden />
+            Elegiste {lot.lot.name}
+          </span>
+          <span className="text-sm text-muted-foreground">
+            {lot.freeSpaces} espacios libres
+            {lot.walkingMinutes !== null && <> · {lot.walkingMinutes} min caminando a tu clase</>}
+          </span>
+        </div>
+        <ClearButton onClear={onClear} />
       </div>
       <p className="flex items-start gap-1.5 text-sm">
         <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
@@ -136,16 +155,19 @@ function ConfirmedChoice({ lot }: { lot: LotView }) {
   );
 }
 
-function StaleChoice({ lot }: { lot: LotView }) {
+function StaleChoice({ lot, onClear }: { lot: LotView; onClear: () => void }) {
   return (
-    <div className="flex flex-col gap-1">
-      <span className="flex items-start gap-1.5 text-sm text-status-full">
-        <CircleX className="mt-0.5 size-4 shrink-0" aria-hidden />
-        {lot.lot.name}, tu elección, se quedó sin cupos.
-      </span>
-      <p className="text-xs text-muted-foreground">
-        Toca otro estacionamiento con cupos para cambiar.
-      </p>
+    <div className="flex items-start justify-between gap-3">
+      <div className="flex min-w-0 flex-col gap-1">
+        <span className="flex items-start gap-1.5 text-sm text-status-full">
+          <CircleX className="mt-0.5 size-4 shrink-0" aria-hidden />
+          {lot.lot.name}, tu elección, se quedó sin cupos.
+        </span>
+        <p className="text-xs text-muted-foreground">
+          Toca otro estacionamiento con cupos para cambiar.
+        </p>
+      </div>
+      <ClearButton onClear={onClear} />
     </div>
   );
 }

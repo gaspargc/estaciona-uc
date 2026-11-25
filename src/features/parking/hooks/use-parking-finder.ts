@@ -81,6 +81,12 @@ export function useParkingFinder({
   /** Drops the pending selection; the confirmed choice is never cleared. */
   const keepConfirmed = () => setPendingLotId(null);
 
+  /** Explicitly removes the current choice; only reachable from its own button. */
+  const clearChoice = () => {
+    setConfirmedLotId(null);
+    setPendingLotId(null);
+  };
+
   return {
     destination,
     selectDestination: setDestinationId,
@@ -94,5 +100,6 @@ export function useParkingFinder({
     selectLot,
     confirmSelection,
     keepConfirmed,
+    clearChoice,
   };
 }
