@@ -1,4 +1,4 @@
-import { Check, MapPin } from "lucide-react";
+import { Check, LogIn, MapPin } from "lucide-react";
 
 import { isSelectable } from "@/domain/availability";
 import type { LotView } from "@/domain/types";
@@ -44,50 +44,49 @@ export function LotCard({
         className={cn("w-1.5 shrink-0", AVAILABILITY_DISPLAY[status].accentClassName)}
       />
 
-      <span className="flex flex-1 flex-col gap-2 p-4">
-        <span className="flex items-start justify-between gap-3">
+      {/* Two columns so the right-hand tags never push the card body down. */}
+      <span className="grid flex-1 grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 p-4">
+        <span className="flex flex-col gap-2">
           <span className="flex flex-col gap-1">
             <span className="text-base font-semibold leading-tight">{lot.name}</span>
-            <LotTags isClosest={isClosest} isConfirmed={isConfirmed} />
+            {isClosest && (
+              <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                <MapPin className="size-3.5" aria-hidden />
+                Más cercano a tu clase
+              </span>
+            )}
           </span>
+
+          <span className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            <span>
+              <span className="font-semibold text-foreground">{freeSpaces}</span> de{" "}
+              {lot.capacity} libres
+            </span>
+            {walkingMinutes !== null && <WalkingTime minutes={walkingMinutes} />}
+          </span>
+
+          <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <LogIn className="size-4 shrink-0" aria-hidden />
+            {lot.accessLabel}
+          </span>
+
+          {!selectable && (
+            <span className="text-sm text-status-full">
+              No se puede elegir: no quedan espacios en este sector.
+            </span>
+          )}
+        </span>
+
+        <span className="flex flex-col items-end gap-1">
+          {isConfirmed && (
+            <span className="inline-flex items-center gap-1 text-xs font-medium whitespace-nowrap text-primary">
+              <Check className="size-3.5" aria-hidden />
+              Tu elección
+            </span>
+          )}
           <AvailabilityBadge status={status} />
         </span>
-
-        <span className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-          <span>
-            <span className="font-semibold text-foreground">{freeSpaces}</span> de{" "}
-            {lot.capacity} libres
-          </span>
-          {walkingMinutes !== null && <WalkingTime minutes={walkingMinutes} />}
-        </span>
-
-        {!selectable && (
-          <span className="text-sm text-status-full">
-            No se puede elegir: no quedan espacios en este sector.
-          </span>
-        )}
       </span>
     </button>
-  );
-}
-
-function LotTags({ isClosest, isConfirmed }: { isClosest: boolean; isConfirmed: boolean }) {
-  if (!isClosest && !isConfirmed) return null;
-
-  return (
-    <span className="flex flex-wrap gap-1.5 text-xs font-medium">
-      {isConfirmed && (
-        <span className="inline-flex items-center gap-1 text-primary">
-          <Check className="size-3.5" aria-hidden />
-          Tu elección
-        </span>
-      )}
-      {isClosest && (
-        <span className="inline-flex items-center gap-1 text-muted-foreground">
-          <MapPin className="size-3.5" aria-hidden />
-          Más cercano a tu clase
-        </span>
-      )}
-    </span>
   );
 }

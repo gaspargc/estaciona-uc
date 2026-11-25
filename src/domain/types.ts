@@ -5,6 +5,8 @@ export interface ParkingLot {
   name: string;
   coordinates: Coordinates;
   capacity: number;
+  /** Short access line shown on every card (H4). */
+  accessLabel: string;
   accessHint: string;
 }
 

@@ -78,10 +78,8 @@ export function useParkingFinder({
     setPendingLotId(null);
   };
 
-  const resetChoice = () => {
-    setConfirmedLotId(null);
-    setPendingLotId(null);
-  };
+  /** Drops the pending selection; the confirmed choice is never cleared. */
+  const keepConfirmed = () => setPendingLotId(null);
 
   return {
     destination,
@@ -95,6 +93,6 @@ export function useParkingFinder({
     confirmedLot,
     selectLot,
     confirmSelection,
-    resetChoice,
+    keepConfirmed,
   };
 }

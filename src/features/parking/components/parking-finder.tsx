@@ -1,6 +1,6 @@
 "use client";
 
-import { SquareParking } from "lucide-react";
+import { Clock, SquareParking } from "lucide-react";
 
 import { DESTINATIONS, PARKING_LOTS } from "@/data/campus";
 import { DEFAULT_SCENARIO_ID, SCENARIOS } from "@/data/scenarios";
@@ -47,6 +47,10 @@ export function ParkingFinder() {
           <SectionHeading id="lots-label" icon={SquareParking}>
             Estacionamientos
           </SectionHeading>
+          <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <Clock className="size-4 shrink-0" aria-hidden />
+            Cupos aproximados · actualizados hace 1 min
+          </p>
           {showAlternativesNotice && (
             <AlternativesNotice
               key={`${scenario.id}:${destination.id}`}
@@ -74,7 +78,7 @@ export function ParkingFinder() {
         selectedLot={finder.selectedLot}
         confirmedLot={finder.confirmedLot}
         onConfirm={finder.confirmSelection}
-        onReset={finder.resetChoice}
+        onKeep={finder.keepConfirmed}
       />
     </>
   );
