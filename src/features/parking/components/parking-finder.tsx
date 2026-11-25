@@ -79,6 +79,7 @@ export function ParkingFinder() {
         confirmedLot={finder.confirmedLot}
         onConfirm={finder.confirmSelection}
         onKeep={finder.keepConfirmed}
+        onClear={finder.clearChoice}
       />
     </>
   );
